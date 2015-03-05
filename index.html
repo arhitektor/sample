@@ -1,0 +1,28 @@
+﻿
+	<style>
+		#map { width: 100%;/* width: 740px; */ height: 300px; margin-bottom:10px; }
+		.MarketMarker { -webkit-filter: drop-shadow(5px 0px 3px #222); filter: drop-shadow(5px 0px 3px #222); }
+	</style>
+
+	<div id="map"></div>
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+	<script>
+		var map = L.map('map', {attributionControl: false, scrollWheelZoom: false}).setView([53.0365, 27.5584], 15).setMaxBounds([[90, -180],[-90, 180]]);
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {minZoom: 1, maxZoom: 19}).addTo(map);
+
+		var	MarketIcon = L.icon({
+			iconUrl: 'http://stroy-market.by/img/marker.png', className: 'MarketMarker',
+			iconSize: [30, 38],
+			iconAnchor: [15, 37],
+			popupAnchor: [0, -23]});
+
+		L.marker([53.0343, 27.5584], {icon: MarketIcon}).addTo(map).bindPopup('<img src="http://www.stroy-market.by/img/stroimarketprint.png" alt="СтройМАРКЕТ" style="margin-bottom: 10px; width: 180px;"><br />'
+	+ '<em>ул. 14 Партизан, 15<br />'
+	+ 'Режим работы: 8.30 – 20.30<br />'
+	+ '(без обеда, без выходных)</em>').openPopup();
+
+	</script>
